@@ -63,7 +63,7 @@
     const inputs = document.querySelectorAll('input')
 
     function handleChange(){
-      const suffix = this.name === 'blur' || this.name === 'spacing' ? 'px' : ''
+      const suffix = this.dataset.sizing || ''
       document.documentElement.style.setProperty(`--${this.name}`, `${this.value + suffix}`)
     }
 
