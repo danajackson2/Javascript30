@@ -6,11 +6,26 @@
 </head>
 <body>
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
-  <script>
-    // Get your shorts on - this is an array workout!
-    // ## Array Cardio Day 1
+  <h2>1. Filter the list of inventors for those who were born in the 1500's</h2>
+  <p id="Q1"></p>
+  <h2>2. Give us an array of the inventors first and last names</h2>
+  <p id="Q2"></p>
+  <h2>3. Sort the inventors by birthdate, oldest to youngest</h2>
+  <p id="Q3"></p>
+  <h2>4. How many years did all the inventors live all together?</h2>
+  <p id="Q4"></p>
+  <h2>5. Sort the inventors by years lived</h2>
+  <p id="Q5"></p>
+  <h2>6. create a list of Boulevards in Paris that contain 'de' anywhere in the name</h2>
+    <p id="Q6">let links = Array.from(document.querySelector('.mw-category').querySelectorAll('a'))</p>
+    <p>let filtered = links.filter(name => name.text.includes('de'))</p>
+    <p>console.log(filtered.map(link => link.text))</p>
+  <h2>7. Sort the people alphabetically by last name</h2>
+  <p id="Q7"></p>
+  <h2>8. Reduce Exercise - Sum up the instances of each of these</h2>
+  <p id="Q8"></p>
 
-    // Some data we can work with
+  <script>
 
     const inventors = [
       { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
@@ -35,30 +50,47 @@
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
     
-    // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const num1 = inventors.filter(i => i.year < 1600 && i.year > 1499)
+    console.log(num1)
+    document.querySelector('#Q1').textContent = num1.map(i => ` ${i.first} ${i.last}`)
 
-    // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const num2 = inventors.map(i => ` ${i.first} ${i.last}`)
+    console.log(num2)
+    document.querySelector('#Q2').textContent = num2
 
-    // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const num3 = inventors.sort((a,b) => a.year - b.year)
+    console.log(num3)
+    document.querySelector('#Q3').textContent = num3.map(i => ` ${i.first} ${i.last} - ${i.year}`)
 
-    // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const num4 = inventors.reduce((tot, i) => tot + (i.passed - i.year), 0)
+    console.log(num4)
+    document.querySelector('#Q4').textContent = `${num4} years`
 
     // 5. Sort the inventors by years lived
+    const num5 = inventors.sort((a,b) => (a.passed - a.year) - (b.passed - b.year))
+    console.log(num5)
+    document.querySelector('#Q5').textContent = num5.map(i => ` ${i.first} ${i.last} ${i.passed-i.year} yrs`)
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    // 7. Sort the people alphabetically by last name
+    const num7 = people.sort((a,b) => a.split(',')[0] - b.split(',')[0])
+    console.log(num7)
+    document.querySelector('#Q7').textContent = num7.map(p => ` ${p.split(',')[1]} ${p.split(',')[0]}`)
 
-    // 7. sort Exercise
-    // Sort the people alphabetically by last name
-
-    // 8. Reduce Exercise
-    // Sum up the instances of each of these
+    // 8. Reduce Exercise - Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const transpo = data.reduce((obj, item) => {
+      obj[item] ? obj[item] += 1 : obj[item] = 1
+      return obj
+    }, {})
+    console.log(transpo)
+    document.querySelector('#Q8').textContent = Object.entries(transpo).map(i => ` ${i[0]} - ${i[1]}`)
 
   </script>
 </body>
