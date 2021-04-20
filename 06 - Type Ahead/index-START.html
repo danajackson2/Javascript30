@@ -7,6 +7,14 @@
 </head>
 <body>
 
+  <form class='form'>
+    <label>Latitude</label>
+    <input class='dis lat' placeholder='47.6062'/>
+    <label>Longitude</label>
+    <input class='dis lon' placeholder='122.3321'/>
+    <button type='submit' class='sortbtn'>Sort by distance from me</button>
+  </form>
+
   <form class="search-form">
     <input type="text" class="search" placeholder="City or State">
     <ul class="suggestions">
@@ -36,7 +44,7 @@ function filterList(e){
         <span class='population'>${numCommas(place.population)}</span>
       </li>  
     `
-  }).join('')
+    }).join('')
   ul.innerHTML = html
 }
 
@@ -44,8 +52,15 @@ function numCommas(x){
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-document.querySelector('input').addEventListener('input', filterList)
+function sortList(e){
+  e.preventDefault()
+  const latitude = e.target.querySelectorAll('input')[0].value
+  const longitude = e.target.querySelectorAll('input')[1].value
 
+}
+
+document.querySelector('.search').addEventListener('input', filterList)
+document.querySelector('.form').addEventListener('submit', sortList)
 
 </script>
 </body>

@@ -72,3 +72,12 @@ span.population {
 .hl {
   background: #ffc600;
 }
+
+.sortbtn {
+  margin: auto;
+}
+
+.dis {
+  width:20%;
+  height: 40px;
+}
