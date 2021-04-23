@@ -5,6 +5,7 @@ const progressBar = player.querySelector('.progress__filled')
 const toggle = player.querySelector('.toggle')
 const skipButtons = player.querySelectorAll('[data-skip]')
 const ranges = player.querySelectorAll('.player__slider')
+const fullscreen = player.querySelector('.fullscreen')
 
 
 function togglePlay(){
@@ -40,6 +41,7 @@ video.addEventListener('timeupdate', handleProgress)
 toggle.addEventListener('click', togglePlay)
 skipButtons.forEach(b => b.addEventListener('click', skip))
 ranges.forEach(r => r.addEventListener('click', handleRangeUpdate))
+fullscreen.addEventListener('click', () => video.requestFullscreen())
 
 let mousedown = false
 progress.addEventListener('click', scrub)
