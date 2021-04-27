@@ -48,6 +48,18 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+function bandList(list){
+  const articles = ['The', 'A', 'An']
+  const sorted = list.sort((a,b) => {
+    a = articles.includes(a.split(' ')[0]) ? a.split(' ').splice(1).join(' ') : a
+    b = articles.includes(b.split(' ')[0]) ? b.split(' ').splice(1).join(' ') : b
+    return a.localeCompare(b)
+  })
+
+  return sorted.map(i => `<li>${i}</li>`).join('')
+}
+
+document.querySelector('#bands').innerHTML = bandList(bands)
 
 </script>
 
