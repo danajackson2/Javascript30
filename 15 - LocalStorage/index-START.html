@@ -23,6 +23,9 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <button id='clear-all'>Clear All</button>
+    <button id='check-all'>Check All</button>
+    <button id='uncheck-all'>Uncheck All</button>
   </div>
 
 <script>
@@ -61,8 +64,29 @@
 
   }
 
+  function clearAll(){
+    itemsList.innerHTML = '<li>Loading Tapas...</li>'
+    items = []
+    localStorage.clear()
+  }
+
+  function checkAll(){
+    items.forEach(i => i.done = true)
+    localStorage.setItem('items', JSON.stringify(items))
+    populateList(items, itemsList)
+  }
+
+  function uncheckAll(){
+    items.forEach(i => i.done = false)
+    localStorage.setItem('items', JSON.stringify(items))
+    populateList(items, itemsList)
+  }
+
   addItems.addEventListener('submit', addItem)
   itemsList.addEventListener('click', toggleDone)
+  document.querySelector('#clear-all').addEventListener('click', clearAll)
+  document.querySelector('#check-all').addEventListener('click', checkAll)
+  document.querySelector('#uncheck-all').addEventListener('click', uncheckAll)
   populateList(items, itemsList)
 
 </script>
